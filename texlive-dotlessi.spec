@@ -1,6 +1,6 @@
 Name:		texlive-dotlessi
 Version:	51476
-Release:	1
+Release:	2
 Summary:	Provides dotless i's and j's for use in any math font
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/macros/latex/contrib/dotlessi
