@@ -1,37 +1,24 @@
-Name:		texlive-dotlessi
-Version:	51476
-Release:	2
-Summary:	Provides dotless i's and j's for use in any math font
+%global tl_name dotlessi
+%global tl_revision 79618
+
+Name:		texlive-%{tl_name}
+Epoch:		1
+Version:	1.1
+Release:	%{tl_revision}.1
+Summary:	Provides dotless is and js for use in any math font
 Group:		Publishing
 URL:		https://www.ctan.org/tex-archive/macros/latex/contrib/dotlessi
 License:	mit
-Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/dotlessi.r%{version}.tar.xz
-Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/dotlessi.doc.r%{version}.tar.xz
+Source0:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/dotlessi.r%{tl_revision}.tar.xz
+Source1:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/dotlessi.doc.r%{tl_revision}.tar.xz
 BuildArch:	noarch
+BuildSystem:	texlive
 BuildRequires:	texlive-tlpkg
-Requires(pre):	texlive-tlpkg
-Requires(post):	texlive-kpathsea
+%texlive_base_requires
+Provides:	texlive(%{tl_name}) = %{tl_revision}
 
 %description
-The package provides two commands: \dotlessi and \dotlessj,
-which give access to dotless i's and j's in math mode. They are
-intended for symbols in non English languages.
+The package provides two commands: \dotlessi and \dotlessj, which give
+access to dotless i's and j's in math mode. They are intended for
+symbols in non English languages.
 
-%prep
-%autosetup -p1 -c -a1
-
-%build
-
-%install
-rm -rf tlpkg
-mkdir -p %{buildroot}%{_texmfdistdir}
-cp -a * %{buildroot}%{_texmfdistdir}
-
-%files
-%{_texmfdistdir}/tex/latex/dotlessi
-%doc %{_texmfdistdir}/doc/latex/dotlessi
-
-%post -p %{_sbindir}/texlive.post
-
-%postun
-[ "$1" -eq 0 ] && %{_sbindir}/texlive.post
